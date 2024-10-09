@@ -1,0 +1,6 @@
+--- 
+# tasks file for webroles 
+- name: Creating user by {{ webusername }} of roles
+  ansible.builtin.user: 
+    name: "{{ webusername }}" 
+    state: present 

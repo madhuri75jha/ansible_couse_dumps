@@ -1,0 +1,9 @@
+--- 
+- name: Testing Ansible Facts 
+  hosts: managed-node01 
+  tasks: 
+    - name: Debug Ansible Facts 
+      ansible.builtin.debug: 
+        msg: "Hostname: {{ ansible_hostname }}, IP Address: {{ ansible_default_ipv4.address }}" 
+
+

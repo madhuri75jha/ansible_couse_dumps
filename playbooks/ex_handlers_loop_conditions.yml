@@ -1,0 +1,41 @@
+---
+- name: Example Playbook with Handlers and Loop
+  hosts: all
+  become: yes
+  vars:
+    packages_to_install:
+      - name: apache2
+        state: present
+      - name: mysql-server
+        state: present
+      - name: php
+        state: present
+
+  tasks:
+    - name: Install packages
+      ansible.builtin.package:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+      loop: "{{ packages_to_install }}"
+      notify: Restart Services
+      when: ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version']|int >= 22
+
+  handlers:
+    - name: Restart Services
+      ansible.builtin.systemd:
+        name: "{{ item.name }}"
+        state: restarted
+      loop: "{{ packages_to_install }}"
+      when: "{{ item.name }} in ansible_facts.services.keys()"
+      register: restart_services_output
+
+    - name: Debug restart services output
+      ansible.builtin.debug:
+        msg: "Restarted service: {{ item.name }} - {{ item.state }}"
+      loop: "{{ restart_services_output.results }}"
+      when: item.changed
+
+
+
+
+

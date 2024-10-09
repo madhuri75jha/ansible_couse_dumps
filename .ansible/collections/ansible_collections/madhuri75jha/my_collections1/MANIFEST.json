@@ -1,0 +1,30 @@
+{
+ "collection_info": {
+  "namespace": "madhuri75jha",
+  "name": "my_collections1",
+  "version": "1.0.0",
+  "authors": [
+   "Madhuri Jha"
+  ],
+  "readme": "README.md",
+  "tags": [],
+  "description": "your collection description",
+  "license": [
+   "GPL-2.0-or-later"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "http://example.com/repository",
+  "documentation": "http://docs.example.com",
+  "homepage": "http://example.com",
+  "issues": "http://example.com/issue/tracker"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "f55747a03b438dd5eeeb3b8227244533fbcce5d851ca3d9c32ede00717cf051e",
+  "format": 1
+ },
+ "format": 1
+}

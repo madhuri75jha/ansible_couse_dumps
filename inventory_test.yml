@@ -1,0 +1,9 @@
+---
+- name: Test Playbook
+  hosts: thinknyx_servers
+  
+  tasks:
+    - name: Ping all hosts
+      ansible.builtin.ping:
+        data: "pong"
+        

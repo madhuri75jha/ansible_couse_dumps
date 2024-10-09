@@ -1,0 +1,1 @@
+Hello! created a file by a bash script

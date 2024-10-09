@@ -1,0 +1,1 @@
+Hello! created a dir & file by bash script

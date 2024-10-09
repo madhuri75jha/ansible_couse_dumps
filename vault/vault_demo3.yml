@@ -1,0 +1,19 @@
+--- 
+- name: Use encrypted files and templates 
+  hosts: managed-node01 
+  vars_files: 
+    - api_variables.yml
+
+  tasks:
+    - name: Curl API URL for 200 status
+      ansible.builtin.uri:
+        url: "{{ api_url }}"
+        methos: "{{ api_method }}"
+
+    - name: Deploy configuration using encrypted template 
+      template: 
+        src: app_template.j2  # Encrypted Jinja2 template file 
+        dest: /etc/myapp/config.yaml 
+        owner: ubuntu 
+        group: ubuntu 
+        mode: '0644' 

@@ -1,0 +1,27 @@
+--- 
+
+- name: Use encrypted files and templates 
+
+  hosts: managed-node01 
+
+  vars_files: 
+
+    - secrets.yml  # Encrypted YAML file 
+
+  
+
+  tasks: 
+
+    - name: Deploy configuration using encrypted template 
+
+      template: 
+
+        src: template.j2  # Encrypted Jinja2 template file 
+
+        dest: /etc/myapp/config.yaml 
+
+        owner: ubuntu 
+
+        group: ubuntu 
+
+        mode: '0644' 

@@ -1,0 +1,41 @@
+---
+- name: This play is for Docker Setup on Ubuntu
+  hosts: thinknyx_servers
+  become: yes
+  
+  tasks:
+    - name: Installing Docker Engine Prerequisites
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+        - gnupg
+        - lsb-release
+
+    - name: Removing any existing Docker packages
+      ansible.builtin.apt:
+        name: 
+          - docker
+          - docker-engine
+          - docker.io
+          - containerd
+          - runc
+        state: absent
+
+    - name: Installing Docker from Official Docker Repository
+      ansible.builtin.apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Enabling and starting Docker service
+      ansible.builtin.systemd:
+        name: docker
+        enabled: yes
+        state: started
+  

@@ -1,0 +1,16 @@
+
+---
+- name: MOTD File Creation
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create MOTD file
+      ansible.builtin.copy:
+        content: |
+          Welcome to Our Server!
+
+          This server is managed by Ansible.
+
+          Last login: {{ ansible_date_time.date }} {{ ansible_date_time.time }} from {{ ansible_ssh_host }}
+        dest: /etc/motd
+

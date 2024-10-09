@@ -1,0 +1,40 @@
+---  
+
+- name: Use encrypted files and templates  
+
+  hosts: managed-node01  
+
+  become: yes 
+
+  vars_files:  
+
+    - api_variables.yml
+    - database_variables.yml 
+
+  
+
+  tasks: 
+
+    - name: Curl API URL for 200 status 
+
+      ansible.builtin.uri: 
+
+        url: "{{ api_url }}" 
+
+        method: "{{ api_method }}" 
+
+  
+
+    - name: Deploy configuration using template  
+
+      template:  
+
+        src: app_config_template.j2 
+
+        dest: /etc/app_config.yaml  
+
+        owner: ubuntu  
+
+        group: ubuntu  
+
+        mode: '0644' 
